@@ -1,0 +1,27 @@
+body {
+  background-color: bisque;
+}
+
+input[type="submit"] {
+  width: 200px;
+  height: 25px;
+  margin: 10px;
+}
+
+input[type="reset"] {
+  width: 200px;
+  height: 25px;
+  margin: 10px;
+}
+
+[class~="test"] {
+  background: red;
+}
+
+.div-tag {
+  background: red;
+  border: 5px solid;
+  width: 100px;
+  text-align: center;
+  font-family: sans-serif;
+}
