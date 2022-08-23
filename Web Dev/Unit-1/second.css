@@ -1,0 +1,15 @@
+#main {
+  /* width: 700px; */
+  height: 100px;
+  border: 1px solid black;
+  display: flex;
+  /* flex-grow: 0; */
+}
+
+#main div {
+  flex-grow: 0;
+  flex-basis: 50px;
+}
+#main div:nth-of-type(2) {
+  flex-grow: 3;
+}
