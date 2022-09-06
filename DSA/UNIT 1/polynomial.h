@@ -24,11 +24,15 @@ node *createNode(int c, int p) {
   node *Node = (node *)malloc(sizeof(node));
   Node->coeff = c;
   Node->power = p;
+  Node->next = NULL;
   return Node;
 }
 
+void initList(poly* p){
+  p->head = NULL;
+}
 void display(poly *pl) {
-  if (pl != NULL) {
+  if (pl->head != NULL) {
     node *temp = pl->head;
     for (int i = 0; temp != NULL; i++) {
       printf("+(%dx^%d)", temp->coeff, temp->power);
@@ -40,13 +44,20 @@ void display(poly *pl) {
 }
 void add_term(poly *pl, int coeff, int power) {
   node *Node = createNode(coeff, power);
-  if (pl == NULL)
-    pl->head = Node;
+  if (pl->head == NULL)
+    {
+      pl->head = Node;
+      printf("INSERTED AT HEAD\n");
+      printf("->%d\n", pl->head->coeff);
+      return;
+    }
   else {
     int found = 0;
+
     if (pl->head->power < power) {
       Node->next = pl->head;
       pl->head = Node;
+      printf("INSERTED\n");
       return;
     }
 
@@ -54,14 +65,18 @@ void add_term(poly *pl, int coeff, int power) {
 
     while (!found) {
       if (temp->next->power < power) {
+        
         Node->next = temp->next;
         temp->next = Node;
-        return;
-      }
-
-      if (temp->next == NULL) {
+        printf("INSERTED");
+        break;
+      } else if (temp->next == NULL) {
         temp->next = Node;
-        return;
+        printf("INSERTED");
+        break;
+      } else{
+        temp = temp->next;
+        printf("*");
       }
     }
   }

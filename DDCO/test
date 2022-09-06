@@ -1,0 +1,61 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_011A7AA0 .scope module, "tb" "tb" 2 1;
+ .timescale 0 0;
+v011AE978_0 .var "t_a", 0 0;
+v010B11D0_0 .var "t_b", 0 0;
+v010B1648_0 .net "t_c", 0 0, L_011A4820; 1 drivers
+v010B12D8_0 .net "t_d", 0 0, L_011AEA40; 1 drivers
+v010B10C8_0 .net "t_e", 0 0, L_011AEAB0; 1 drivers
+v010B13E0_0 .net "t_f", 0 0, L_011AEA08; 1 drivers
+v010B1280_0 .net "t_g", 0 0, L_010B1938; 1 drivers
+S_011A74C8 .scope module, "a1" "and1" 2 7, 3 1, S_011A7AA0;
+ .timescale 0 0;
+L_011A4820 .functor AND 1, v011AE978_0, v010B11D0_0, C4<1>, C4<1>;
+L_011AEA40 .functor OR 1, v011AE978_0, v010B11D0_0, C4<0>, C4<0>;
+L_011AEAB0 .functor XOR 1, v011AE978_0, v010B11D0_0, C4<0>, C4<0>;
+L_011AE9D0 .functor AND 1, v011AE978_0, v010B11D0_0, C4<1>, C4<1>;
+L_011AEA08 .functor NOT 1, L_011AE9D0, C4<0>, C4<0>, C4<0>;
+L_011AEC60 .functor OR 1, v011AE978_0, v010B11D0_0, C4<0>, C4<0>;
+L_010B1938 .functor NOT 1, L_011AEC60, C4<0>, C4<0>, C4<0>;
+v01093F60_0 .net *"_s10", 0 0, L_011AEC60; 1 drivers
+v011A2AE8_0 .net *"_s6", 0 0, L_011AE9D0; 1 drivers
+v011A2B40_0 .net "a", 0 0, v011AE978_0; 1 drivers
+v011A2B98_0 .net "b", 0 0, v010B11D0_0; 1 drivers
+v011A3350_0 .alias "c", 0 0, v010B1648_0;
+v011A33A8_0 .alias "d", 0 0, v010B12D8_0;
+v011A3400_0 .alias "e", 0 0, v010B10C8_0;
+v011A3458_0 .alias "f", 0 0, v010B13E0_0;
+v011AE920_0 .alias "g", 0 0, v010B1280_0;
+    .scope S_011A7AA0;
+T_0 ;
+    %vpi_call 2 8 "$dumpfile", "dump.vcd";
+    %vpi_call 2 9 "$dumpvars", 1'sb0, S_011A7AA0;
+    %end;
+    .thread T_0;
+    .scope S_011A7AA0;
+T_1 ;
+    %vpi_call 2 12 "$monitor", v011AE978_0, v010B11D0_0, v010B1648_0, v010B12D8_0, v010B10C8_0, v010B13E0_0, v010B13E0_0;
+    %set/v v011AE978_0, 0, 1;
+    %set/v v010B11D0_0, 0, 1;
+    %delay 10, 0;
+    %set/v v011AE978_0, 0, 1;
+    %set/v v010B11D0_0, 1, 1;
+    %delay 10, 0;
+    %set/v v011AE978_0, 1, 1;
+    %set/v v010B11D0_0, 0, 1;
+    %delay 10, 0;
+    %set/v v011AE978_0, 1, 1;
+    %set/v v010B11D0_0, 1, 1;
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "atestbench.v";
+    "a.v";
